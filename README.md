@@ -81,6 +81,8 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 copy .env.example .env
+python -m app.db.check_connection
+python -m app.db.create_database
 python -m app.db.seed
 uvicorn app.main:app --reload
 ```
@@ -117,9 +119,9 @@ Backend:
 ```env
 APP_NAME="LocalBiz Commerce API"
 SECRET_KEY=change-this-secret-before-production
-DATABASE_URL=postgresql+psycopg://postgres:postgres@localhost:5432/localbiz
+DATABASE_URL=postgresql+psycopg2://postgres:postgresSathwik2005@localhost:5433/localbiz
 FRONTEND_URL=http://localhost:3000
-BACKEND_CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+BACKEND_CORS_ORIGINS=http://localhost:3000,http://localhost:3000
 UPLOAD_DIR=static/uploads
 ```
 
@@ -175,3 +177,25 @@ NEXT_PUBLIC_WHATSAPP_NUMBER=919876543210
 ## Notes
 
 The storefront falls back to demo data when the API is not running, so the UI can be previewed immediately. Once the backend and database are started, it automatically uses live API data.
+
+## Troubleshooting
+
+### PostgreSQL password authentication failed
+
+If startup shows `password authentication failed for user "postgres"`, the backend is reaching PostgreSQL but the password in `backend/.env` is wrong.
+
+Open `backend/.env` and update this line:
+
+```env
+DATABASE_URL=postgresql+psycopg2://postgres:Sathwik2005@localhost:5433/localbiz
+```
+
+Then test it before starting the API:
+
+```powershell
+cd backend
+.\.venv\Scripts\activate
+python -m app.db.check_connection
+```
+
+If your database name is not `localbiz`, either create it or change the last part of `DATABASE_URL`.

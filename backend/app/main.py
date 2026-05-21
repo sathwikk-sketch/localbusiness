@@ -24,7 +24,7 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    app.mount("/static", StaticFiles(directory="static"), name="static")
+    app.mount("/static", StaticFiles(directory=str(settings.static_path)), name="static")
 
     app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
     app.include_router(categories.router, prefix="/api/categories", tags=["Categories"])
