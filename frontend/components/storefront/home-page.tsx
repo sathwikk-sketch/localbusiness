@@ -24,7 +24,7 @@ export function HomePage({ data }: { data: StorefrontData }) {
       </div>
 
       <SiteHeader profile={data.profile} onCartOpen={() => setCartOpen(true)} />
-      <HeroSection profile={data.profile} banner={data.banners[0]} products={data.products} />
+      <HeroSection profile={data.profile} products={data.products} categories={data.categories} />
       <BannerStrip banners={data.banners} />
       <ProductBrowser products={data.products} categories={data.categories} />
       <OffersSection offers={data.offers} />
