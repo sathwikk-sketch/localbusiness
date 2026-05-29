@@ -1,12 +1,13 @@
-import { SearchX } from "lucide-react";
+import { PackageSearch } from "lucide-react";
 
 export function EmptyState({ title, message }: { title: string; message: string }) {
   return (
-    <div className="flex min-h-72 flex-col items-center justify-center rounded-lg border border-dashed border-ink/15 bg-white/60 p-8 text-center">
-      <SearchX className="mb-4 size-10 text-ink/30" />
-      <h3 className="text-lg font-bold text-ink">{title}</h3>
-      <p className="mt-2 max-w-md text-sm leading-6 text-ink/60">{message}</p>
+    <div className="flex min-h-80 flex-col items-center justify-center rounded-2xl border border-dashed border-ink-200/40 bg-gradient-to-br from-ink-50/30 to-white/50 p-10 text-center">
+      <div className="flex size-16 items-center justify-center rounded-2xl bg-ink-100/50 text-ink-400 mb-5">
+        <PackageSearch className="size-7 stroke-[1.5]" />
+      </div>
+      <h3 className="text-lg font-semibold text-ink-900 mb-2">{title}</h3>
+      <p className="max-w-sm text-sm text-ink-500 leading-relaxed">{message}</p>
     </div>
   );
 }
-

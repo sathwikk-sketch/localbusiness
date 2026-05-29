@@ -2,50 +2,322 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========================================
+   Root Design System
+   ======================================== */
 :root {
   color-scheme: light;
-  --background: #f8fafc;
-  --foreground: #14213d;
+
+  /* Environment */
+  --background: #fafafa;
+  --foreground: #0f172a;
+
+  /* Premium atmospheric gradients */
+  --gradient-ambient: radial-gradient(ellipse at 0% 0%, rgba(13, 148, 136, 0.03) 0%, transparent 50%),
+                       radial-gradient(ellipse at 100% 100%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.65) 100%);
+
+  /* Premium Shadows */
+  --shadow-subtle: 0 1px 2px rgba(15, 23, 42, 0.03);
+  --shadow-soft: 0 4px 12px rgba(15, 23, 42, 0.04);
+  --shadow-elevated: 0 12px 32px rgba(15, 23, 42, 0.08);
+  --shadow-premium: 0 20px 50px rgba(15, 23, 42, 0.12);
+
+  /* Motion */
+  --transition-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-premium: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+/* ========================================
+   Base Reset & Typography
+   ======================================== */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   margin: 0;
-  background: linear-gradient(135deg, #f8fafc 0%, #eef6ff 47%, #fff7ed 100%);
+  background: var(--gradient-ambient), var(--background);
   color: var(--foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  min-height: 100vh;
 }
 
-button,
-input,
-select,
-textarea {
+/* Typography refinement */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Form elements */
+button, input, select, textarea {
   font: inherit;
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.1);
-  backdrop-filter: blur(18px);
+button {
+  cursor: pointer;
 }
 
+/* ========================================
+   Premium Utilities
+   ======================================== */
+
+/* Glassmorphism - Premium */
+.glass {
+  background: var(--gradient-glass);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow-soft),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* Admin Grid Pattern */
 .admin-grid {
   background-image:
-    linear-gradient(rgba(20, 33, 61, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 33, 61, 0.05) 1px, transparent 1px);
-  background-size: 28px 28px;
+    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -1px -1px;
 }
 
+/* ========================================
+   Premium Surface Effects
+   ======================================== */
+
+/* Ambient glow on focus */
+.focus-glow:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15),
+              0 0 0 1px rgba(13, 148, 136, 0.3);
+}
+
+/* Premium card states */
+.surface-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-subtle);
+  transition: all 0.35s var(--transition-premium);
+}
+
+.surface-card:hover {
+  box-shadow: var(--shadow-elevated);
+  border-color: transparent;
+}
+
+/* Atmospheric depth */
+.atmospheric {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(13, 148, 136, 0.06) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(245, 158, 11, 0.04) 0%, transparent 100%),
+    linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+}
+
+/* ========================================
+   Premium Typography Utilities
+   ======================================== */
+
+/* Serif headline for editorial feel */
+.headline-serif {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Refined text clamp */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========================================
+   Premium Motion Utilities
+   ======================================== */
+
+/* Smooth opacity transitions */
+.faded-enter {
+  opacity: 0;
+  animation: fadeIn 0.6s var(--transition-smooth) forwards;
+}
+
+/* Gentle lift on interaction */
+.lift-on-hover {
+  transition: transform 0.35s var(--transition-premium),
+              box-shadow 0.35s var(--transition-premium);
+}
+
+.lift-on-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Subtle scale for buttons */
+.scale-press:active {
+  transform: scale(0.97);
+  transition: transform 0.1s;
+}
+
+/* Focus states - premium ring */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2),
+              0 0 0 4px rgba(13, 148, 136, 0.1);
+}
+
+/* ========================================
+   Form Input States
+   ======================================== */
+
+/* Premium input styling */
+input.premium-input,
+textarea.premium-input,
+select.premium-input {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: all 0.25s var(--transition-premium);
+  box-shadow: var(--shadow-subtle);
+}
+
+input.premium-input:focus,
+textarea.premium-input:focus,
+select.premium-input:focus {
+  outline: none;
+  border-color: rgba(13, 148, 136, 0.3);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.08),
+              var(--shadow-soft);
+}
+
+input.premium-input::placeholder,
+textarea.premium-input::placeholder {
+  color: rgba(15, 23, 42, 0.35);
+  font-weight: 400;
+}
+
+/* ========================================
+   Scrollbar Refinement
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.12);
+  border-radius: 100px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.2);
+  background-clip: padding-box;
+}
+
+/* ========================================
+   Selection & Accessibility
+   ======================================== */
+
+::selection {
+  background: rgba(13, 148, 136, 0.15);
+  color: #0f172a;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ========================================
+   Keyframe Animations
+   ======================================== */
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

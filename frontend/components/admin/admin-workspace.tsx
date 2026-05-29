@@ -1,26 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  BadgePercent,
-  Boxes,
-  CheckCircle2,
-  CircleDollarSign,
-  Edit3,
-  Home,
-  ImageUp,
-  LayoutDashboard,
-  Loader2,
-  LogOut,
-  PackagePlus,
-  RefreshCw,
-  Save,
-  Search,
-  ShoppingBag,
-  Store,
-  Upload,
-  XCircle
-} from "lucide-react";
+import { BadgePercent, Boxes, CircleCheck as CheckCircle2, CircleDollarSign, CreditCard as Edit3, Hop as Home, ImageUp, LayoutDashboard, Loader as Loader2, LogOut, PackagePlus, RefreshCw, Save, Search, ShoppingBag, Store, Upload, Circle as XCircle } from "lucide-react";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -154,24 +135,25 @@ export function AdminWorkspace() {
             </Button>
           </div>
           <nav className="flex gap-2 overflow-x-auto px-4 pb-4 lg:grid lg:overflow-visible lg:px-6">
-            {[
-              ["overview", LayoutDashboard, "Overview"],
-              ["products", Boxes, "Products"],
-              ["orders", ShoppingBag, "Orders"],
-              ["offers", BadgePercent, "Offers"],
-              ["content", Home, "Content"]
-            ].map(([key, Icon, label]) => {
+            {(
+              [
+                ["overview", LayoutDashboard, "Overview"],
+                ["products", Boxes, "Products"],
+                ["orders", ShoppingBag, "Orders"],
+                ["offers", BadgePercent, "Offers"],
+                ["content", Home, "Content"]
+              ] as const
+            ).map(([key, Icon, label]) => {
               const active = tab === key;
-              const TypedIcon = Icon as typeof LayoutDashboard;
               return (
                 <button
                   key={key}
-                  onClick={() => setTab(key as Tab)}
+                  onClick={() => setTab(key)}
                   className={`inline-flex shrink-0 items-center gap-3 rounded-lg px-4 py-3 text-sm font-black transition ${
                     active ? "bg-ink text-white shadow-soft" : "text-ink/60 hover:bg-ink/5 hover:text-ink"
                   }`}
                 >
-                  <TypedIcon className="size-5" />
+                  <Icon className="size-5" />
                   {label}
                 </button>
               );
