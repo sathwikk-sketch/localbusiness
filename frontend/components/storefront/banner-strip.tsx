@@ -9,8 +9,9 @@ export function BannerStrip({ banners }: { banners: Banner[] }) {
   if (!banners.length) return null;
 
   return (
-    <section className="mx-auto -mt-6 max-w-7xl px-5 sm:px-8 lg:px-12 relative z-10">
-      <div className="grid gap-3 sm:gap-4 md:grid-cols-2">
+    <section className="mx-auto px-5 py-20 sm:px-8 lg:px-12 relative">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-2">
         {banners.slice(0, 2).map((banner, index) => (
           <motion.a
             key={banner.id}
@@ -49,6 +50,7 @@ export function BannerStrip({ banners }: { banners: Banner[] }) {
             </div>
           </motion.a>
         ))}
+      </div>
       </div>
     </section>
   );

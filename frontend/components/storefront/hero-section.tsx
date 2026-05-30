@@ -27,78 +27,76 @@ export function HeroSection({
   }, [searchQuery, products]);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-white pt-16 pb-20 sm:pt-24 sm:pb-28 lg:pt-32">
-      {/* Ambient background effects */}
+    <section className="relative h-screen overflow-hidden bg-white flex flex-col items-center justify-center pt-20">
+      {/* Ambient background effects - very subtle */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/3 size-[600px] bg-mint-500/5 blur-[100px] rounded-full" />
-        <div className="absolute bottom-1/3 right-1/4 size-[500px] bg-saffron-500/6 blur-[80px] rounded-full" />
+        <div className="absolute top-1/3 left-1/3 size-[600px] bg-mint-500/3 blur-[120px] rounded-full opacity-40" />
+        <div className="absolute bottom-1/4 right-1/4 size-[500px] bg-saffron-500/4 blur-[100px] rounded-full opacity-30" />
       </div>
 
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-ink-50/10 to-white pointer-events-none" />
-
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+      <div className="relative flex-1 flex flex-col items-center justify-center mx-auto max-w-4xl px-5 sm:px-8 lg:px-12 w-full">
         {/* Status badge */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex justify-center mb-8"
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="mb-10 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-ink-200/50 bg-white/80 px-4 py-2 backdrop-blur-sm shadow-subtle">
-            <span className="size-2 rounded-full bg-mint-500" />
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-ink-200/40 bg-white/70 px-5 py-2.5 backdrop-blur-sm shadow-subtle">
+            <span className="size-2 rounded-full bg-mint-500 animate-pulse" />
             <span className="text-sm text-ink-600 font-medium">
-              Discover {profile.business_name}
+              Exploring {profile.business_name}
             </span>
           </div>
         </motion.div>
 
-        {/* Main headline - Editorial serif */}
+        {/* Main headline - Editorial serif - Cinematic intro */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-          className="max-w-5xl mx-auto text-center mb-6 sm:mb-10 lg:mb-12"
+          transition={{ duration: 1, delay: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-center mb-8 sm:mb-12"
         >
-          <h1 className="headline-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-ink-900 leading-[1.1] sm:leading-[1.05] tracking-[-0.03em] mb-4 sm:mb-6">
-            The quiet directory
+          <h1 className="headline-serif text-6xl sm:text-7xl lg:text-8xl text-ink-900 leading-[1.1] tracking-[-0.03em] mb-6">
+            The quiet
             <br />
-            <span className="font-light italic text-ink-400">of places</span>
+            <span className="font-light italic text-ink-400">directory of</span>
             <br />
-            <span className="font-light italic text-ink-500">worth knowing.</span>
+            <span className="font-light italic text-ink-500">places worth</span>
+            <br />
+            <span className="font-light italic text-ink-400">knowing.</span>
           </h1>
 
           {/* Supporting copy */}
           <motion.p
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-base sm:text-lg text-ink-500 max-w-2xl mx-auto leading-relaxed font-light"
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-base sm:text-lg text-ink-500 max-w-2xl mx-auto leading-relaxed font-light mt-6"
           >
-            A curated guide to exceptional offerings from {profile.business_name} — handpicked by people who know quality when they see it.
+            A curated guide to exceptional offerings — handpicked by people who know quality when they see it.
           </motion.p>
         </motion.div>
 
-        {/* Search interface */}
+        {/* Search interface - Primary interaction */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-          className="max-w-3xl mx-auto mb-16 sm:mb-20 lg:mb-24"
+          transition={{ duration: 0.8, delay: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
+          className="w-full max-w-2xl mb-12 sm:mb-16"
         >
           <div className="relative group">
-            <div className="flex items-center gap-3 rounded-2xl border border-ink-200/40 bg-white/95 backdrop-blur-sm p-3 sm:p-4 shadow-soft group-hover:shadow-elevated group-focus-within:shadow-elevated transition-all duration-350 group-focus-within:border-ink-300">
+            <div className="flex items-center gap-3 rounded-2xl border border-ink-200/50 bg-white/97 backdrop-blur-sm p-3.5 sm:p-4 shadow-elevated group-hover:shadow-premium group-focus-within:shadow-premium transition-all duration-350 group-focus-within:border-ink-300">
               <Search className="size-5 text-ink-400 ml-1 flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Search products, categories, styles..."
+                placeholder="Search everything..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 bg-transparent text-ink-900 placeholder:text-ink-400 outline-none text-base sm:text-lg"
+                className="flex-1 bg-transparent text-ink-900 placeholder:text-ink-350 outline-none text-base sm:text-lg font-light"
               />
               <button className="flex items-center gap-2.5 rounded-xl bg-ink-900 text-white px-6 py-3 font-semibold text-sm hover:bg-ink-800 active:scale-95 transition-all duration-250 whitespace-nowrap">
                 <span>Search</span>
-                <span className="text-ink-300 text-xs">⌘K</span>
               </button>
             </div>
           </div>
@@ -108,8 +106,8 @@ export function HeroSection({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8"
+          transition={{ duration: 0.7, delay: 0.65 }}
+          className="hidden lg:grid grid-cols-2 gap-6 w-full mb-8"
         >
           {filteredProducts.map((product, index) => (
             <motion.div
@@ -171,20 +169,20 @@ export function HeroSection({
           ))}
         </motion.div>
 
-        {/* Category tags */}
+        {/* Category tags - Subtle navigation hint */}
         {categories.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-            className="flex flex-wrap gap-2.5 justify-center pt-4 sm:pt-6 border-t border-ink-100/50"
+            transition={{ duration: 0.6, delay: 0.75, ease: [0.25, 0.1, 0.25, 1] }}
+            className="hidden sm:flex flex-wrap gap-2.5 justify-center pt-6 border-t border-ink-100/40"
           >
-            <span className="text-xs text-ink-400 font-medium uppercase tracking-[0.06em]">Explore</span>
-            {categories.slice(0, 6).map((cat) => (
+            <span className="text-[11px] text-ink-400 font-medium uppercase tracking-[0.08em]">Explore</span>
+            {categories.slice(0, 5).map((cat) => (
               <a
                 key={cat.id}
                 href="#products"
-                className="px-3.5 py-1.5 rounded-full bg-white border border-ink-100 text-ink-700 hover:border-ink-200 hover:bg-ink-50 transition-all duration-250 text-xs font-medium"
+                className="px-3.5 py-1.5 rounded-full bg-white border border-ink-100 text-ink-600 hover:border-ink-200 hover:bg-ink-50 transition-all duration-250 text-xs font-medium"
               >
                 {cat.name}
               </a>
